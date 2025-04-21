@@ -40,8 +40,8 @@ def write_to_word(elements, output_path):
 nlp = spacy.load("en_core_web_sm")
 
 
-st.title("word用実験レポート作成ツール (仮にレポートが吹き飛んだ場合でも一切の責任を負いかねます)")
-
+st.title("word用実験レポート作成ツール ")
+st.write("仮にレポートが吹き飛んだとしても一切の責任を負いかねます")
 uploaded_file = st.file_uploader("PDFファイルをアップロード", type=["pdf"])
 
 if uploaded_file:

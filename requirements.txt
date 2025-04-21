@@ -1,0 +1,7 @@
+pdfplumber
+python-docx
+Pillow
+spacy
+streamlit
+# UI アプリ（Webベース）
+streamlit

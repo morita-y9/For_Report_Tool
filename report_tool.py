@@ -1,7 +1,6 @@
 import pdfplumber
 
 from docx import Document
-from docx.shared import Inches
 import spacy
 import streamlit as st
 

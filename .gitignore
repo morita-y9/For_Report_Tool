@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+*.whl
+*.py
+!report_tool.py
+
+# 環境ファイル・仮想環境
+.env
+.venv/
+venv/
+env/
+*.env
+
+# Word/PDFファイル（生成物は基本無視）
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls
+
+# Streamlitのセッションキャッシュ
+.streamlit/
+.cache/
+**/__pycache__/
+
+# OSによるゴミファイル
+.DS_Store
+Thumbs.db
+
+# VSCode等エディタ用
+.vscode/
+.idea/
+
+# ログ・一時ファイル
+*.log
+*.tmp
+*.bak
+
+# pip freeze結果（必要なら入れてもOK）
+requirements.txt

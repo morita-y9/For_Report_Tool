@@ -54,5 +54,5 @@ if uploaded_file:
         output_path = "output.docx"
         write_to_word(elements, output_path)
         with open(output_path, "rb") as f:
-            st.download_button("Wordファイルをダウンロードする", f, file_name="converted.docx")
+            st.download_button("Wordファイルをダウンロードする", f, file_name="report_draft.docx")
 

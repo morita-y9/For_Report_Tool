@@ -8,6 +8,7 @@ __pycache__/
 *.whl
 *.py
 !report_tool.py
+!report_format.docx
 
 # 環境ファイル・仮想環境
 .env

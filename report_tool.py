@@ -3,6 +3,8 @@ import pdfplumber
 from docx import Document
 import spacy
 import streamlit as st
+from docx.shared import Pt, RGBColor
+from docx.oxml.ns import qn
 
 def extract_pdf_elements(pdf_path):
     elements = []
@@ -19,14 +21,24 @@ def extract_pdf_elements(pdf_path):
     return elements
 
 def write_to_word(elements, output_path):
-    # 表紙の挿入
     doc = Document("report_format.docx")
+    base_font = "MS 明朝"
 
     for page_num, content in enumerate(elements):
-
         if content['text']:
             for line in content['text'].split('\n'):
-                doc.add_paragraph(line)
+                p = doc.add_paragraph()
+                run = p.add_run(line)
+
+                # 基本フォントスタイル
+                run.font.name = base_font
+                run._element.rPr.rFonts.set(qn('w:eastAsia'), base_font)
+                run.font.size = Pt(10.5)
+
+                # 見出しと判断される行なら大きくする
+                if line.strip().startswith(("1.", "2.", "3.","4.","5.","6.", "実験目的", "実験結果", "考察")):
+                    run.font.size = Pt(14)
+                    run.bold = True
 
         for table in content['tables']:
             rows, cols = len(table), len(table[0])
@@ -34,6 +46,11 @@ def write_to_word(elements, output_path):
             for i, row in enumerate(table):
                 for j, cell in enumerate(row):
                     t.cell(i, j).text = cell or ''
+                    for paragraph in t.cell(i, j).paragraphs:
+                        for run in paragraph.runs:
+                            run.font.name = base_font
+                            run._element.rPr.rFonts.set(qn('w:eastAsia'), base_font)
+                            run.font.size = Pt(12)
 
     doc.save(output_path)
     
